@@ -30,7 +30,8 @@
 	</header>
 	<img id="welcome" src="${pageContext.request.contextPath}/resources/images/welcome.JPG" alt="welcome">
     <div id="title">회원가입 방식을 선택해주세요</div>
-    <button id="email-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/signup.JPG" alt="naver">간편 아이디로 회원가입</button><br>
+   
+    <button id="email-signup" onclick="location.href='${pageContext.request.contextPath}/member/signupForm.do'"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/signup.JPG" alt="naver">간편 아이디로 회원가입</button><br>
     <button id="naver-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/naver.JPG" alt="naver"><div>네이버로 회원가입</div></button><br>
     <button id="kakao-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/kakao.jpg" alt="kakao"><div>카카오톡으로 회원가입</div></button><br>
     <button id="google-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/google.JPG" alt="google"><div>구글로 회원가입</div></button>

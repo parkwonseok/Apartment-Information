@@ -13,7 +13,11 @@ import com.pws.test.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
     private MemberDAO memberDAO;
- 
+	@Override
+	public int insertMember(MemberVO memberVO) {
+		int result = memberDAO.insertMember(memberVO);
+	    return result;
+	}
     @Override
     public List<MemberVO> listMembers() throws DataAccessException {
     	List<MemberVO> membersList = memberDAO.selectAllMemberList();

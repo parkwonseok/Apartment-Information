@@ -6,4 +6,5 @@ import com.pws.test.vo.MemberVO;
 
 public interface MemberService {
 	public List<MemberVO> listMembers();
+	public int insertMember(MemberVO memberVO);
 }
