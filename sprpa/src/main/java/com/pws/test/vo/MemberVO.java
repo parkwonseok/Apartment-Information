@@ -5,13 +5,6 @@ public class MemberVO {
 	private String mb_pw;
 	private String mb_name;
 	
-	public MemberVO(String mb_email, String mb_pw, String mb_name) {
-		super();
-		this.mb_email = mb_email;
-		this.mb_pw = mb_pw;
-		this.mb_name = mb_name;
-	}
-	
 	public String getMb_email() {
 		return mb_email;
 	}

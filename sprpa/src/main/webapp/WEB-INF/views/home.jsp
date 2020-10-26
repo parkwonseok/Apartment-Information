@@ -17,9 +17,9 @@
 			<span>로그인</span>
 			<button id="login-close">X</button>
 		</div>
-  		<form id="loginForm" action="#" method="post">
-  			<input type="text" id="id" name="id" placeholder="이메일을 입력해주세요"><br>
-  			<input type="text" id="pw" name="pw" placeholder="비빌번호를 입력해주세요"><br>
+  		<form id="loginForm" action="${pageContext.request.contextPath}/member/login" method="post">
+  			<input type="text" id="id" name="mb_email" placeholder="이메일을 입력해주세요"><br>
+  			<input type="text" id="pw" name="mb_pw" placeholder="비빌번호를 입력해주세요"><br>
   			<input type="submit" id="submit" value="로그인">
   		</form>
   		<div id="social-login">───────────────또는───────────────</div>
@@ -41,8 +41,14 @@
 		</nav>
 		<nav id="member">
 			<ul>
-				<li><a id="login-open">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath}/signup">회원가입</a></li>
+				<c:if test="${empty loginEmail}">
+					<li><a id="login-open">로그인</a></li>	
+					<li><a href="${pageContext.request.contextPath}/signup">회원가입</a></li>
+				</c:if>
+				<c:if test="${not empty loginEmail}">
+					<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>	
+					<li><a href="${pageContext.request.contextPath}/member/mypage">마이페이지</a></li>
+				</c:if>
 			</ul>
 		</nav>
 		<img id="home-img" src="${pageContext.request.contextPath}/resources/images/homeImg.jpg" alt="홈배경화면">

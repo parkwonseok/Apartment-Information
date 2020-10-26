@@ -2,17 +2,28 @@
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+
 <mapper namespace="member">
-    <resultMap id="memberResult" type="MemberVO">
-        <result property="mb_email" column="mb_email" />
-        <result property="mb_pw" column="mb_pw" />
-        <result property="mb_name" column="mb_name" />
-    </resultMap> 
- 
-    <select id="selectAllMemberList" resultMap="memberResult">
+	<resultMap id="memberResult" type="MemberVO">
+		<result property="mb_email" column="mb_email" />
+		<result property="mb_pw" column="mb_pw" />
+		<result property="mb_name" column="mb_name" />
+	</resultMap>
+
+	<select id="selectAllMemberList" resultMap="memberResult">
         <![CDATA[
             select * from member
         ]]>
-    </select>
+	</select>
+
+	<select id="loginCheck" resultType="com.pws.test.vo.MemberVO">
+        <![CDATA[
+            select * from member where mb_email = #{mb_email} and mb_pw = #{mb_pw}
+        ]]>
+	</select>
+
+	<insert id="insertMember" parameterType="MemberVO">
+		insert into member
+		values(#{mb_email}, #{mb_pw}, #{mb_name})
+	</insert>
 </mapper>

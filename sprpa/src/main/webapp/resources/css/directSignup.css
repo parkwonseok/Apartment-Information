@@ -1,0 +1,20 @@
+body {text-align: center;margin:0; padding:0;}
+#title {color:rgba(0,0,0,0.8); font-size: 40px; font-weight: bold; margin: 120px 0 50px 0; }
+input {width: 500px; height: 60px; color:rgba(0,0,0,0.8); font-size: 20px; padding-left: 10px;margin: 2px;}
+input[type="submit"] {width: 499px; height: 60px; background: rgba(0,0,0,0.8); border: none; color: white; font-size: 20px; font-weight: bold; margin-top: 20px;}
+input[type="submit"]:hover {cursor:pointer;}
+li {list-style: none;}
+a {text-decoration: none;}
+header {display: flex;align-items: center;justify-content: space-around;height: 70px;background: rgba(0,0,0,0.8);z-index: 0;border-bottom: 1px solid gray;}
+#logo {display: flex;align-items: center;}
+#logo img {width: 50px;height: 50px;margin-right: 10px;}
+#logo a {font-size: 30px;color: rgba(230, 230, 230, 1);font-family: 'Gaegu', cursive;}
+#main-nav ul {display: flex;z-index: 100;}
+#main-nav li {padding: 24px 40px;}
+#main-nav li:hover {border-bottom: 3px solid orange;}
+#main-nav a {font-size: 18px;font-weight: bold;color: rgba(240, 240, 240, 1);letter-spacing: 0.05em;}
+#login-open:hover {cursor: pointer;}
+#member ul {display: flex;}
+#member li {padding: 0 10px;}
+#member a {font-size: 14px;color: rgba(240, 240, 240, 1);letter-spacing: 0.05em;}
+#member a:hover {opacity: 0.5;}

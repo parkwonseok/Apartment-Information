@@ -1,14 +1,16 @@
 package com.pws.test.controller;
 
-import java.util.List;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pws.test.service.MemberService;
 import com.pws.test.vo.MemberVO;
@@ -19,12 +21,30 @@ public class MemberController {
 	@Autowired
     private MemberService memberService;
     
-    @RequestMapping(value="/showList" ,method = RequestMethod.GET)
-    public String listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List<MemberVO> membersList = memberService.listMembers();
-        for(MemberVO mb : membersList) {
-        	System.out.println(mb.getMb_email());
+    @PostMapping("/login")
+    public String login(MemberVO memberVO, HttpSession session) {
+    	boolean loginCheck = memberService.loginCheck(memberVO, session);
+    	return "home";
+    }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+    	return "home";
+    }
+    
+    @GetMapping("/directSignup")
+    public String directSignup() throws Exception {
+        return "directSignup";
+    }
+    
+    @PostMapping("/addMember")
+    public String addMember(MemberVO memberVO, HttpSession session) throws Exception {
+        int result = memberService.insertMember(memberVO);
+        if(result == 1) {
+        	session.setAttribute("loginEmail", memberVO.getMb_email());
+        	return "redirect:/";
         }
-        return "home";
+        else return "directSignup";
     }
 }

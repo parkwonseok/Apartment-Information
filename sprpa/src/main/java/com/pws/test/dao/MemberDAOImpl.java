@@ -20,4 +20,16 @@ public class MemberDAOImpl implements MemberDAO {
     	List<MemberVO> result = sqlSession.selectList(namespace+"selectAllMemberList");
         return result;
     }
+
+	@Override
+	public MemberVO loginCheck(MemberVO memberVO) {
+		MemberVO result = sqlSession.selectOne(namespace+"loginCheck", memberVO);
+		return result;
+	}
+	
+	@Override
+	public int insertMember(MemberVO memberVO) {
+		int result = sqlSession.insert(namespace+"insertMember", memberVO);
+	    return result;
+	}
 }

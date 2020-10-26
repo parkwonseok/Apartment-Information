@@ -6,7 +6,10 @@
 	<title>회원가입</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/signup.css">
 	<link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
 </head>
 <body>
 	<header>
