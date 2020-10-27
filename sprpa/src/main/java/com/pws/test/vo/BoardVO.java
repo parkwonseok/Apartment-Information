@@ -12,13 +12,13 @@ public class BoardVO {
 	private String cm_content;
 	private String mb_email;
 	private String mb_name;
-	private boolean secret;
+	private int secret;
 	public BoardVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public BoardVO(int bno, String title, String content, Date regdate, int viewcnt, Date cm_regdate, String cm_content,
-			String mb_email, String mb_name, boolean secret) {
+			String mb_email, String mb_name, int secret) {
 		super();
 		this.bno = bno;
 		this.title = title;
@@ -85,10 +85,10 @@ public class BoardVO {
 	public void setMb_name(String mb_name) {
 		this.mb_name = mb_name;
 	}
-	public boolean isSecret() {
+	public int getSecret() {
 		return secret;
 	}
-	public void setSecret(boolean secret) {
+	public void setSecret(int secret) {
 		this.secret = secret;
 	}
 }

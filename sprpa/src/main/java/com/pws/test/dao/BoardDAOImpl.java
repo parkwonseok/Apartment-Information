@@ -20,4 +20,26 @@ public class BoardDAOImpl implements BoardDAO{
 		List<BoardVO> boardList  = sqlSession.selectList(namespace+"selectAllboardList");
 		return boardList;
 	}
+	
+	@Override
+	public boolean insertArticle(BoardVO boardVO) {
+		int result = sqlSession.insert(namespace+"insertArticle",boardVO);
+		if(result == 1) {
+			return true;
+		} else { 
+			return false;
+		}
+	}
+
+	@Override
+	public BoardVO getArticleByBno(int bno) {
+		BoardVO result = sqlSession.selectOne(namespace+"getArticleByBno", bno);
+		return result;
+	}
+
+	@Override
+	public void removeArticle(int bno) {
+		sqlSession.delete(namespace+"removeArticle", bno);
+		
+	}
 }

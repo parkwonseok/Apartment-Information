@@ -20,7 +20,7 @@ public class MemberController {
     @PostMapping("/login")
     public String login(MemberVO memberVO, HttpSession session) {
     	boolean loginCheck = memberService.loginCheck(memberVO, session);
-    	return "home";
+    	return "redirect:/";
     }
     
     @GetMapping("/logout")

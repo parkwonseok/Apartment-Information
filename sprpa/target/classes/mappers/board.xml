@@ -14,21 +14,42 @@
 		<result property="mb_name" column="mb_name" />
 		<result property="cm_content" column="cm_content" />
 	</resultMap>
-	
+
 	<select id="selectAllboardList" resultMap="boardResult">
 	    <![CDATA[
 	    	SELECT bno, title, mb_name,regdate from Board ORDER BY regdate DESC		
 	    ]]>
 	</select>
+	<!-- 글쓰기 -->
+	<insert id="insertArticle" parameterType="BoardVO">
+	    <![CDATA[
+	    	INSERT into board(bno,  title, content, mb_name, mb_email,secret, regdate)
+			VALUES(seq_board.nextval,#{title},#{content},#{mb_name},#{mb_email},#{secret}, sysdate)		
+	    ]]>
+	</insert>
+
+	<!-- 게시글 번호를 이용해서 찾기 -->
+	<select id="getArticleByBno" resultType="BoardVO">
+        <![CDATA[
+            select * from board where bno = #{bno}
+        ]]>
+	</select>
+
+	
+	<delete id="removeArticle">
+        <![CDATA[
+            delete from board where bno = #{bno}
+        ]]>
+	</delete>
 	<!-- 총 게시글 갯수 출력 -->
-<select id="countBoard" resultType="int">
+	<select id="countBoard" resultType="int">
 	  <![CDATA[
 	SELECT COUNT(*) FROM Board
 	]]>
-</select>
+	</select>
 
-<!-- 페이징 처리 후 게시글 조회 -->
-<select id="selectBoard" resultType="com.pws.test.vo.BoardVO">
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectBoard" resultType="com.pws.test.vo.BoardVO">
 	<![CDATA[
 	SELECT * FROM (
 			SELECT ROWNUM RN, A.* 
@@ -40,5 +61,5 @@
 				)
 	WHERE RN BETWEEN #{start} AND #{end}
 		]]>
-</select>
+	</select>
 </mapper>

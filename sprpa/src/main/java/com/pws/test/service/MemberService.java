@@ -10,4 +10,5 @@ public interface MemberService {
 	public List<MemberVO> listMembers();
 	public boolean loginCheck(MemberVO memberVO, HttpSession session);
 	public int insertMember(MemberVO memberVO);
+	public String getMemberName(String mb_email);
 }

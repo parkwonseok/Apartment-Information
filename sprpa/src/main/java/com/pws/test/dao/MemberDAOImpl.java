@@ -32,4 +32,11 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = sqlSession.insert(namespace+"insertMember", memberVO);
 	    return result;
 	}
+	
+	@Override
+	public String getMemberName(String mb_email) {
+		MemberVO vo = sqlSession.selectOne(namespace+"getMemberName", mb_email);
+		String mb_name =  vo.getMb_name();
+		return mb_name;
+	}
 }

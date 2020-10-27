@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean loginCheck(MemberVO memberVO, HttpSession session) {
 		MemberVO result = memberDAO.loginCheck(memberVO);
 		if(result != null) {
-			session.setAttribute("loginEmail", result);
+			session.setAttribute("loginEmail", result.getMb_email());
 			return true;
 		}
 		else return false;
@@ -36,5 +36,11 @@ public class MemberServiceImpl implements MemberService {
 	public int insertMember(MemberVO memberVO) {
 		int result = memberDAO.insertMember(memberVO);
 	    return result;
+	}
+	
+	@Override
+	public String getMemberName(String mb_email) {
+		String mb_name = memberDAO.getMemberName(mb_email);
+		return mb_name;
 	}
 }

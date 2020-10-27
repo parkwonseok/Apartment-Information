@@ -22,11 +22,11 @@ public class PagingVO {
 	}
 	// 시작, 끝 페이지 계산
 	public void calcStartEndPage(int nowPage, int cntPage) {
-		setEndPage(((int)Math.ceil((double)nowPage / (double)cntPage)) * cntPage);
+		setEndPage(((int)Math.ceil((double)nowPage / (double)10)) * 10);
 		if (getLastPage() < getEndPage()) {
 			setEndPage(getLastPage());
 		}
-		setStartPage(getEndPage() - cntPage + 1);
+		setStartPage(getEndPage() - 10 + 1);
 		if (getStartPage() < 1) {
 			setStartPage(1);
 		}

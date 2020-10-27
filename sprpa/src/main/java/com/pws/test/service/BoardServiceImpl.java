@@ -26,6 +26,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public boolean insertArticle(BoardVO boardVO) {
+		boolean result = boardDAO.insertArticle(boardVO);
+		return result;
+	}
+	
+	@Override
 	public int countBoard() {
 		return sqlSession.selectOne(namespace+"countBoard");
 		
@@ -35,6 +41,18 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> selectBoard(PagingVO vo) {
 		List<BoardVO> boardList  = sqlSession.selectList(namespace+"selectBoard", vo);
 		return boardList;
+		
+	}
+
+	@Override
+	public BoardVO getArticleByBno(int bno) {
+		BoardVO result = boardDAO.getArticleByBno(bno);
+		return result;
+	}
+
+	@Override
+	public void removeArticle(int bno) {
+		boardDAO.removeArticle(bno);
 		
 	}
 }

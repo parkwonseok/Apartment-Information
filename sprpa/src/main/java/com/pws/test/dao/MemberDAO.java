@@ -8,4 +8,5 @@ public interface MemberDAO {
 	public List<MemberVO> selectAllMemberList();
 	public MemberVO loginCheck(MemberVO memberVO);
 	public int insertMember(MemberVO memberVO);
+	public String getMemberName(String mb_email);
 }
