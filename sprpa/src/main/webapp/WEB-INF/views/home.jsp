@@ -36,7 +36,7 @@
 				<li><a href="#">실시간 거래</a></li>
 				<li><a href="#">메뉴</a></li>
 				<li><a href="#">메뉴</a></li>
-				<li><a href="#">문의하기</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/listArticles.do">문의하기</a></li>
 			</ul>
 		</nav>
 		<nav id="member">
