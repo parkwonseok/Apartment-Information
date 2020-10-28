@@ -1,0 +1,44 @@
+body > h2 {text-align: center; font-size: 40px; color: rgba(0,0,0,0.8); font-weight: bold; margin-bottom: 80px;}
+table {width: 100%;}
+#outter {position: relative; display: block; width: 1000px;margin: auto;}
+a {text-decoration: none;}
+
+body {text-align: center;margin:0; padding:0;}
+li {list-style: none;}
+a {text-decoration: none;}
+header {display: flex;align-items: center;justify-content: space-around;height: 70px;background: rgba(0,0,0,0.8);z-index: 0;border-bottom: 1px solid gray;}
+#logo {display: flex;align-items: center;}
+#logo img {width: 50px;height: 50px;margin-right: 10px;}
+#logo a {font-size: 30px;color: rgba(230, 230, 230, 1);font-family: 'Gaegu', cursive;}
+#main-nav ul {display: flex;z-index: 100;}
+#main-nav li {padding: 24px 40px;}
+#main-nav li:hover {border-bottom: 3px solid orange;}
+#main-nav a {font-size: 18px;font-weight: bold;color: rgba(240, 240, 240, 1);letter-spacing: 0.05em;}
+#login-open:hover {cursor: pointer;}
+#member ul {display: flex;}
+#member li {padding: 0 10px;}
+#member a {font-size: 14px;color: rgba(240, 240, 240, 1);letter-spacing: 0.05em;}
+#member a:hover {opacity: 0.5;}
+
+#th {width: 1000px; border-top: 2px solid rgba(0,0,0,0.8); border-bottom: 1px solid rgba(0,0,0,0.8);}
+#th ul {display: flex; align-items: center;margin: 0;}
+#th li {font-size: 18px; font-weight: bold; padding: 7px 0;}
+#th_bno {width: 70px;}
+#th_title {width: 440px;}
+#th_writer {width: 150px; text-align: left;}
+#th_regdate {width: 250px; padding-right:30px;}
+#cntPerPage {position:absolute; top: -41px; right: 0; width: 100px; height: 40px; font-size: 16px; font-weight: bold; color: rgba(0,0,0,0.8);}
+.bd_tr {margin: 5px 0;}
+.bd_tr td {color: rgba(0,0,0,0.7); font-size: 18px; font-weight: bold; padding: 7px 20px;}
+.bd_bno {width: 100px;}
+.bd_title {width: 400px;}
+.bd_title:hover {cursor: pointer; color: black; text-decoration: underline;}
+.bd_name {width: 120px;}
+.bd_regdate {width: 350px;}
+#btn_write {position:absolute; left: 0; top: -41px; border:none; width: 100px; height: 40px; font-size: 20px; background-color: rgba(0,0,0,0.8); font-weight: bold; color: white;}
+#btn_write:hover {opacity: 0.8; cursor: pointer;}
+#page-num {margin-top: 30px;}
+#page-num a, #page-num b {color: rgba(0,0,0,0.5); font-size: 20px; margin: 10px;}
+#page-num b {color: black;}
+#page-num a:hover {color: black; text-decoration: underline;}
+.secret-img {width: 17px; height: 17px; margin: 0 10px;}

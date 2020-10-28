@@ -13,38 +13,46 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/boardPaging.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/boardPaging.css">
+<link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap"
+	rel="stylesheet">
 </head>
-<style>
-h2 {
-	text-align: center;
-}
-
-table {
-	width: 100%;
-}
-
-#outter {
-	display: block;
-	width: 60%;
-	margin: auto;
-}
-
-a {
-	text-decoration: none;
-}
-</style>
-<script>
-	
-</script>
 <body>
+	<header>
+		<div id="logo">
+			<img
+				src="${pageContext.request.contextPath}/resources/images/logo.png"
+				alt="로고"> <a href="${pageContext.request.contextPath}/">부동산
+				플랜</a>
+		</div>
+		<nav id="main-nav">
+			<ul>
+				<li><a href="#">실시간 거래</a></li>
+				<li><a href="#">메뉴</a></li>
+				<li><a href="#">메뉴</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/board/boardList">문의하기</a></li>
+			</ul>
+		</nav>
+		<nav id="member">
+			<ul>
+				<c:if test="${empty loginEmail}">
+					<li><a id="login-open">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/signup">회원가입</a></li>
+				</c:if>
+				<c:if test="${not empty loginEmail}">
+					<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/mypage">마이페이지</a></li>
+				</c:if>
+			</ul>
+		</nav>
+	</header>
 	<h2>게시판</h2>
 
 	<div id="outter">
 		<div style="float: right;">
 			<select id="cntPerPage" name="sel" onchange="selChange()">
-				<option value="5"
-					<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
-					보기</option>
 				<option value="10"
 					<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
 					보기</option>
@@ -60,31 +68,43 @@ a {
 		<div>
 			<button id="btn_write">글쓰기</button>
 		</div>
-		<table border="1">
-			<tr align="center" bgcolor="lightgreen">
-				<th><b>글번호</b></th>
-				<th><b>글제목</b></th>
-				<th><b>작성자</b></th>
-				<th><b>작성일</b></th>
 
-			</tr>
+		<div id="th">
+			<ul>
+				<li id="th_bno">글번호</li>
+				<li id="th_title">제목</li>
+				<li id="th_writer">작성자</li>
+				<li id="th_regdate">작성날짜</li>
+			</ul>
+		</div>
 
+		<table>
 			<c:forEach var="board" items="${boardList}">
 				<tr class="bd_tr" align="center">
 					<td class="bd_bno">${board.bno}</td>
-					<td class="bd_title">${board.title}</td>
-					<td>${board.mb_name}</td>
-					<td>${board.regdate}</td>
-
+					<c:choose>
+						<c:when test="${(empty loginEmail && board.secret == 1) || (not empty loginEmail && loginEmail != 'admin' && loginEmail != board.mb_email && board.secret == 1)}">
+        					<td>비공개 글입니다.
+    					</c:when>
+						<c:otherwise>
+       						<td class="bd_title">${board.title}
+    					</c:otherwise>
+					</c:choose>
+					<c:if test="${(empty loginEmail && board.secret == 1) || (not empty loginEmail && loginEmail != 'admin' && loginEmail != board.mb_email && board.secret == 1)}">
+						<img class="secret-img" src="${pageContext.request.contextPath}/resources/images/secret.png">
+					</c:if>
+					</td>
+					<td class="bd_name">${board.mb_name}</td>
+					<td class="bd_regdate">${board.regdate}</td>
 				</tr>
 			</c:forEach>
 		</table>
 
 
-		<div style="display: block; text-align: center;">
+		<div id="page-num" style="display: block; text-align: center;">
 			<c:if test="${paging.startPage != 1 }">
 				<a
-					href="/sprpa/board/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+					href="/sprpa/board/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">◀</a>
 			</c:if>
 			<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 				var="p">
@@ -100,7 +120,7 @@ a {
 			</c:forEach>
 			<c:if test="${paging.endPage != paging.lastPage}">
 				<a
-					href="/sprpa/board/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+					href="/sprpa/board/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">▶</a>
 			</c:if>
 		</div>
 	</div>

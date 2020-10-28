@@ -19,7 +19,7 @@
 		</div>
   		<form id="loginForm" action="${pageContext.request.contextPath}/member/login" method="post">
   			<input type="text" id="id" name="mb_email" placeholder="이메일을 입력해주세요"><br>
-  			<input type="text" id="pw" name="mb_pw" placeholder="비빌번호를 입력해주세요"><br>
+  			<input type="password" id="pw" name="mb_pw" placeholder="비빌번호를 입력해주세요"><br>
   			<input type="submit" id="submit" value="로그인">
   		</form>
   		<div id="social-login">───────────────또는───────────────</div>
