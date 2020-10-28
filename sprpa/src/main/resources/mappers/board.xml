@@ -54,7 +54,7 @@
 	SELECT * FROM (
 			SELECT ROWNUM RN, A.* 
 				FROM (
-						SELECT bno, title, mb_name,regdate, secret, cm_content  
+						SELECT bno, title, mb_name,regdate, secret, cm_content, mb_email  
 						FROM BOARD 
 						ORDER BY regdate DESC 
 						) A
