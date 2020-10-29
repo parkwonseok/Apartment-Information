@@ -21,4 +21,9 @@ public interface BoardService {
 	// 게시글 삭제
 	public void removeArticle(int bno);
 	
+	// 게시글 수정
+	public void modifyArticle(BoardVO boardVO);
+	
+	// 게시글 답글
+	public boolean insertReply(BoardVO boardVO, int bno);
 }

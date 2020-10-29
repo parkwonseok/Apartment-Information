@@ -55,4 +55,16 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.removeArticle(bno);
 		
 	}
+
+	@Override
+	public void modifyArticle(BoardVO boardVO) {
+		boardDAO.modifyArticle(boardVO);
+		
+	}
+	
+	@Override
+	public boolean insertReply(BoardVO boardVO,int bno) {
+		boolean result = boardDAO.insertReply(boardVO,bno);
+		return result;
+	}
 }

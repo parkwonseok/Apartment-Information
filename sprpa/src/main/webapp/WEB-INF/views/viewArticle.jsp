@@ -1,210 +1,129 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<%-- 
-<c:set var="article"  value="${articleMap.article}"  />
-<c:set var="imageFileList"  value="${articleMap.imageFileList}"  />
-
- --%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-  request.setCharacterEncoding("UTF-8");
-%> 
-
+	request.setCharacterEncoding("UTF-8");
+%>
 <head>
-   <meta charset="UTF-8">
-   <title>글보기</title>
-   <style>
-     #tr_file_upload{
-       display:none;
-     }
-     #tr_btn_modify{
-       display:none;
-     }
-   
-   </style>
-   <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
-   <script type="text/javascript" >
-     function backToList(obj){
-	    obj.action="${contextPath}/board/listArticles.do";
-	    obj.submit();
-     }
- 
-	 function fn_enable(obj){
-		 document.getElementById("i_title").disabled=false;
-		 document.getElementById("i_content").disabled=false;
-		 document.getElementById("i_imageFileName").disabled=false;
-		 document.getElementById("tr_btn_modify").style.display="block";
-		 document.getElementById("tr_file_upload").style.display="block";
-		 document.getElementById("tr_btn").style.display="none";
-	 }
-	 
-	 function fn_modify_article(obj){
-		 obj.action="${contextPath}/board/modArticle.do";
-		 obj.submit();
-	 }
-	 
-	 function fn_remove_article(url,bno){
-		 var form = document.createElement("form");
-		 form.setAttribute("method", "post");
-		 form.setAttribute("action", url);
-	     var articleNOInput = document.createElement("input");
-	     articleNOInput.setAttribute("type","hidden");
-	     articleNOInput.setAttribute("name","bno");
-	     articleNOInput.setAttribute("value", bno);
-		 
-	     form.appendChild(articleNOInput);
-	     document.body.appendChild(form);
-	     form.submit();
-	 
-	 }
-	 
-	 function fn_reply_form(url, parentNO){
-		 var form = document.createElement("form");
-		 form.setAttribute("method", "post");
-		 form.setAttribute("action", url);
-	     var parentNOInput = document.createElement("input");
-	     parentNOInput.setAttribute("type","hidden");
-	     parentNOInput.setAttribute("name","parentNO");
-	     parentNOInput.setAttribute("value", parentNO);
-		 
-	     form.appendChild(parentNOInput);
-	     document.body.appendChild(form);
-		 form.submit();
-	 }
-	 
-	 function readURL(input) {
-	     if (input.files && input.files[0]) {
-	         var reader = new FileReader();
-	         reader.onload = function (e) {
-	             $('#preview').attr('src', e.target.result);
-	         }
-	         reader.readAsDataURL(input.files[0]);
-	     }
-	 }  
- </script>
+<meta charset="UTF-8">
+<title>글보기</title>
+<style>
+#tr_file_upload {
+	display: none;
+}
+#tr_btn_modify {
+	display: none;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/resources/css/viewArticle.css">
+<script
+	src="${pageContext.request.contextPath }/resources/js/viewArticle.js"></script>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-  <form name="frmArticle" method="post"  action="${contextPath}"  enctype="multipart/form-data">
-  <table  border=0  align="center">
-  <tr>
-   <td width=150 align="center" bgcolor=#FF9933>
-      글번호
-   </td>
-   <td >
-    <input type="text"  value="${board.bno }"  disabled />
-    <input type="hidden" name="articleNO" value="${board.bno}"  />
-   </td>
-  </tr>
-  <tr>
-    <td width="150" align="center" bgcolor="#FF9933">
-      작성자 아이디
-   </td>
-   <td >
-    <input type=text value="${board.mb_name }" name="writer"  disabled />
-   </td>
-  </tr>
-  <tr>
-    <td width="150" align="center" bgcolor="#FF9933">
-      제목 
-   </td>
-   <td>
-    <input type=text value="${board.title }"  name="title"  id="i_title" disabled />
-   </td>   
-  </tr>
-  <tr>
-    <td width="150" align="center" bgcolor="#FF9933">
-      내용
-   </td>
-   <td>
-    <textarea rows="20" cols="60"  name="content"  id="i_content"  disabled />${board.content }</textarea>
-   </td>  
-  </tr>
- <%-- 
- <c:if test="${not empty imageFileList && imageFileList!='null' }">
-	  <c:forEach var="item" items="${imageFileList}" varStatus="status" >
-		    <tr>
-			    <td width="150" align="center" bgcolor="#FF9933"  rowspan="2">
-			      이미지${status.count }
-			   </td>
-			   <td>
-			     <input  type= "hidden"   name="originalFileName" value="${item.imageFileName }" />
-			    <img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${item.imageFileName}" id="preview"  /><br>
-			   </td>   
-			  </tr>  
-			  <tr>
-			    <td>
-			       <input  type="file"  name="imageFileName " id="i_imageFileName"   disabled   onchange="readURL(this);"   />
-			    </td>
-			 </tr>
-		</c:forEach>
- </c:if>
- 	 --%>    
- 	 
-<%--   <c:choose> 
-	  <c:when test="${not empty article.imageFileName && article.imageFileName!='null' }">
-	   	<tr>
-		    <td width="150" align="center" bgcolor="#FF9933"  rowspan="2">
-		      이미지
-		   </td>
-		   <td>
-		     <input  type= "hidden"   name="originalFileName" value="${article.imageFileName }" />
-		    <img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${article.imageFileName}" id="preview"  /><br>
-		   </td>   
-		  </tr>  
-		  <tr>
-		    <td ></td>
-		    <td>
-		       <input  type="file"  name="imageFileName " id="i_imageFileName"   disabled   onchange="readURL(this);"   />
-		    </td>
-		  </tr> 
-		 </c:when>
-		 <c:otherwise>
-		    <tr  id="tr_file_upload" >
-				    <td width="150" align="center" bgcolor="#FF9933"  rowspan="2">
-				      이미지
-				    </td>
-				    <td>
-				      <input  type= "hidden"   name="originalFileName" value="${article.imageFileName }" />
-				    </td>
-			    </tr>
-			    <tr>
-				    <td ></td>
-				    <td>
-				       <img id="preview"  /><br>
-				       <input  type="file"  name="imageFileName " id="i_imageFileName"   disabled   onchange="readURL(this);"   />
-				    </td>
-			  </tr>
-		 </c:otherwise>
-	 </c:choose> --%>
-  <tr>
-	   <td width="150" align="center" bgcolor="#FF9933">
-	      등록일자
-	   </td>
-	   <td>
-	    <input type=text value="<fmt:formatDate value="${article.writeDate}" />" disabled />
-	   </td>   
-  </tr>
-  <tr   id="tr_btn_modify"  align="center"  >
-	   <td colspan="2"   >
-	       <input type=button value="수정반영하기"   onClick="fn_modify_article(frmArticle)"  >
-           <input type=button value="취소"  onClick="backToList(frmArticle)">
-	   </td>   
-  </tr>
-    
-  <tr  id="tr_btn"    >
-   <td colspan="2" align="center">
-       <c:if test="${member.id == article.id }">
-	      <input type=button value="수정하기" onClick="fn_enable(this.form)">
-	      <input type=button value="삭제하기" onClick="fn_remove_article('${contextPath}/board/removeArticle', ${board.bno})">
-	    </c:if>
-	    <input type=button value="리스트로 돌아가기"  onClick="backToList(this.form)">
-	     <input type=button value="답글쓰기"  onClick="fn_reply_form('${contextPath}/board/replyForm', ${board.bno})">
-   </td>
-  </tr>
- </table>
- </form>
-</body>
+	<header>
+		<div id="logo">
+			<img
+				src="${pageContext.request.contextPath}/resources/images/logo.png"
+				alt="로고"> <a href="${pageContext.request.contextPath}/">부동산
+				플랜</a>
+		</div>
+		<nav id="main-nav">
+			<ul>
+				<li><a href="#">실시간 거래</a></li>
+				<li><a href="#">메뉴</a></li>
+				<li><a href="#">메뉴</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/board/boardList">문의하기</a></li>
+			</ul>
+		</nav>
+		<nav id="member">
+			<ul>
+				<c:if test="${empty loginEmail}">
+					<li><a href="${pageContext.request.contextPath}/login">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/signup">회원가입</a></li>
+				</c:if>
+				<c:if test="${not empty loginEmail}">
+					<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/mypage">마이페이지</a></li>
+				</c:if>
+			</ul>
+		</nav>
+	</header>
+
+	<div id="title">게시글 내용</div>
+	<div id="wrap">
+		<div class="articleInfo1">
+			<div>글번호</div>
+			<div class="div_info">${board.bno}</div>
+			<div>작성자</div>
+			<div class="div_info">${board.mb_name }</div>
+			<div>등록일자</div>
+			<div class="div_info">
+				<fmt:formatDate value="${board.regdate}" />
+			</div>
+		</div>
+		<div class="articleInfo2">
+			<div>제목</div>
+			<div class="bd-title">${board.title }</div>
+		</div>
+		<div class="articleInfo3">
+			<div class="bd-content">${board.content}</div>
+		</div>
+
+		<button id="modify_btn" onclick="modifyArticle()">수정하기</button>
+		<button id="delete_btn" onclick="deleteArticle(${board.bno})">삭제하기</button>
+		
+		<div id="modify-container">
+			<form id="modifyForm" action="${contextPath }/board/modifyArticle"
+				method="post" style="display: none;">
+				<input type="hidden" name="bno" value="${board.bno }"><br>
+				<input type="text" id="modify-title" name="title" value="${board.title }"><br>
+				<textarea id="modify-content" name="content" cols="60" rows="20" style="resize: none;">${board.content }</textarea><br>
+				<input type="submit" id="modify-btn" value="수정하기">
+			</form>
+		</div>
+	</div>
+	<div id=parentReply style="text-align: center;">
+		<c:if test="${loginEmail == 'admin'}">
+			<form id="reply"
+				action="${pageContext.request.contextPath}/board/replyRegister"
+				method="post">
+				<p>
+				<h3>댓글을 입력해주세요.</h3>
+				<textarea id="replytext" name="cm_content" form="reply" cols="40"
+					rows="5" autofocus required wrap="hard" placeholder="댓글을 입력해주세요"></textarea>
+				<!-- 				<input type="text" name="cm_content" placeholder="댓글을 입력해주세요"><br> -->
+				<input type="hidden" name="bno" value="${board.bno}">
+				</p>
+				<input type="submit" value="댓글등록">
+			</form>
+		</c:if>
+		
+		<h3>관리자 답글</h3>
+		<div id="cm">
+			<div id="cm-regdate">작성시간: ${board.cm_regdate}</div>
+			<div id="cm-content">${board.cm_content}</div>
+		</div>
+	</div>
+	<script>
+		function modifyArticle() {
+			$('#modifyForm').toggle('slow');
+		}
+		function deleteArticle(bno) {
+			if(confirm('해당 글을 삭제하시겠습니까?')){
+				/* alert('삭제 완료하였습니다.'); */
+				$(location).attr('href', 'http://localhost:8080/sprpa/board/removeArticle?bno='+bno);
+			} else {
+				/* alert('취소 하였습니다.'); */
+			}
+		}
+	</script>
+	</body>
 </html>

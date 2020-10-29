@@ -47,6 +47,20 @@
 	SELECT COUNT(*) FROM Board
 	]]>
 	</select>
+	
+	
+	<update id="modifyArticle">
+	  <![CDATA[
+	UPDATE BOARD SET title = #{title}, content = #{content} where bno = #{bno}
+	]]>
+	</update>
+	
+	<!-- 댓글쓰기 -->
+	<insert id="insertReply" parameterType="BoardVO">
+	    <![CDATA[
+	    	UPDATE BOARD SET cm_content = #{cm_content}, cm_regdate = sysdate where bno= #{bno}
+	    ]]>
+	</insert>
 
 	<!-- 페이징 처리 후 게시글 조회 -->
 	<select id="selectBoard" resultType="com.pws.test.vo.BoardVO">

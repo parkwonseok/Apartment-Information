@@ -9,4 +9,6 @@ public interface BoardDAO {
 	boolean insertArticle(BoardVO boardVO);
 	BoardVO getArticleByBno(int bno);
 	void removeArticle(int bno);
+	void modifyArticle(BoardVO boardVO);
+	boolean insertReply(BoardVO boardVO,int bno);
 }

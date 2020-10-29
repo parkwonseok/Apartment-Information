@@ -72,6 +72,12 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping(value = "/modifyArticle", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modifyArticle(BoardVO boardVO, HttpServletRequest request) {
+		boardService.modifyArticle(boardVO);
+		return "redirect:/board/viewArticle?bno="+boardVO.getBno();
+	}
+	
 	@RequestMapping(value = "/removeArticle", method = { RequestMethod.GET, RequestMethod.POST })
 	public String removeArticle(@RequestParam("bno") int bno,HttpServletRequest request) {
 //		String removeArticle = (String) request.getAttribute("bno"); //input hidden 넘어온(post 방식) name값 저장
@@ -79,6 +85,19 @@ public class BoardController {
 		boardService.removeArticle(bno);
 		
 		return "redirect:/board/boardList";
+	}
+	
+	@RequestMapping(value = "/replyRegister", method = {RequestMethod.GET, RequestMethod.POST})
+	public String replyRegister(@RequestParam("bno") int bno, BoardVO boardVO, HttpSession session, HttpServletRequest request){
+		
+		
+		boardVO.setBno(bno);
+		boolean result = boardService.insertReply(boardVO,bno);
+		if (result) {
+			return "redirect:/board/viewArticle?bno="+ Integer.toString(bno);
+		} else {
+			return "viewArticle";
+		}
 	}
 	
 	@GetMapping("/boardList")

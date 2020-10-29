@@ -22,13 +22,19 @@
 				<li><a href="#">실시간 거래</a></li>
 				<li><a href="#">메뉴</a></li>
 				<li><a href="#">메뉴</a></li>
-				<li><a href="#">문의하기</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/boardList">문의하기</a></li>
 			</ul>
 		</nav>
 		<nav id="member">
 			<ul>
-				<li><a id="login-open">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath}/signup">회원가입</a></li>
+				<c:if test="${empty loginEmail}">
+					<li><a href="${pageContext.request.contextPath}/login">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/signup">회원가입</a></li>
+				</c:if>
+				<c:if test="${not empty loginEmail}">
+					<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/mypage">마이페이지</a></li>
+				</c:if>
 			</ul>
 		</nav>
 	</header>

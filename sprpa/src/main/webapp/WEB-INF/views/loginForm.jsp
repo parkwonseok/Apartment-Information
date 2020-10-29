@@ -3,13 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-	<title>회원가입</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/signup.css">
+	<title>홈</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/loginForm.css">
 	<link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/loginForm.js"></script>
 </head>
 <body>
 	<header>
@@ -37,11 +35,16 @@
 			</ul>
 		</nav>
 	</header>
-	<img id="welcome" src="${pageContext.request.contextPath}/resources/images/welcome.JPG" alt="welcome">
-    <div id="title">회원가입 방식을 선택해주세요</div>
-    <button id="email-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/signup.JPG" alt="naver">간편 아이디로 회원가입</button><br>
-    <button id="naver-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/naver.JPG" alt="naver"><div>네이버로 회원가입</div></button><br>
-    <button id="kakao-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/kakao.jpg" alt="kakao"><div>카카오톡으로 회원가입</div></button><br>
-    <button id="google-signup"><img class="login-img" src="${pageContext.request.contextPath}/resources/images/google.JPG" alt="google"><div>구글로 회원가입</div></button>
+	
+	<h1>로그인</h1>
+    <form id="loginForm" action="${pageContext.request.contextPath}/member/login" method="post">
+  		<input type="text" id="id" name="mb_email" placeholder="이메일을 입력해주세요"><br>
+  		<input type="password" id="pw" name="mb_pw" placeholder="비빌번호를 입력해주세요"><br>
+  		<input type="submit" id="submit" value="로그인">
+    </form>
+    <div id="social-login">───────────또는───────────</div>
+    <button id="kakao-login"><img src="${pageContext.request.contextPath}/resources/images/kakao.jpg">카카오 로그인</button><br>
+    <button id="naver-login"><img src="${pageContext.request.contextPath}/resources/images/naver.JPG">네이버 로그인</button><br>
+    <button id="goggle-login"><img src="${pageContext.request.contextPath}/resources/images/google.JPG">구글 로그인</button>
 </body>
 </html>

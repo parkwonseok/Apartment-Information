@@ -38,7 +38,7 @@
 		<nav id="member">
 			<ul>
 				<c:if test="${empty loginEmail}">
-					<li><a id="login-open">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/login">로그인</a></li>
 					<li><a href="${pageContext.request.contextPath}/signup">회원가입</a></li>
 				</c:if>
 				<c:if test="${not empty loginEmail}">
@@ -84,15 +84,15 @@
 					<td class="bd_bno">${board.bno}</td>
 					<c:choose>
 						<c:when test="${empty loginEmail}">
-        					<c:choose>
-	        					<c:when test="${board.secret == 1}">
-	        						<td>비공개 글입니다.
-	        					</c:when>
-	        					<c:otherwise>
-		       						<td class="bd_title">${board.title}
-		    					</c:otherwise>
-	    					</c:choose>
-    					</c:when>
+							<c:choose>
+								<c:when test="${board.secret == 1}">
+									<td>비공개 글입니다.
+								</c:when>
+								<c:otherwise>
+									<td class="bd_title">${board.title}
+								</c:otherwise>
+							</c:choose>
+						</c:when>
 						<c:otherwise>
 							<c:choose>
 								<c:when test="${loginEmail == 'admin'}">
@@ -100,28 +100,30 @@
 								</c:when>
 								<c:otherwise>
 									<c:choose>
-										<c:when test="${loginEmail != board.mb_email && board.secret == 1}">
+										<c:when
+											test="${loginEmail != board.mb_email && board.secret == 1}">
 											<td>비공개 글입니다.
 										</c:when>
 										<c:otherwise>
 											<td class="bd_title">${board.title}
 										</c:otherwise>
-		       						</c:choose>
+									</c:choose>
 								</c:otherwise>
-       						</c:choose>
-    					</c:otherwise>
+							</c:choose>
+						</c:otherwise>
 					</c:choose>
-					
+
 					<c:choose>
 						<c:when test="${empty loginEmail}">
-        					<c:choose>
-	        					<c:when test="${board.secret == 1}">
-	        						<img class="secret-img" src="${pageContext.request.contextPath}/resources/images/secret.png">
-	        					</c:when>
-	        					<c:otherwise>
-		    					</c:otherwise>
-	    					</c:choose>
-    					</c:when>
+							<c:choose>
+								<c:when test="${board.secret == 1}">
+									<img class="secret-img"
+										src="${pageContext.request.contextPath}/resources/images/secret.png">
+								</c:when>
+								<c:otherwise>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
 						<c:otherwise>
 							<c:choose>
 								<c:when test="${loginEmail == 'admin'}">
@@ -129,17 +131,24 @@
 								</c:when>
 								<c:otherwise>
 									<c:choose>
-										<c:when test="${loginEmail != board.mb_email && board.secret == 1}">
-											<img class="secret-img" src="${pageContext.request.contextPath}/resources/images/secret.png">
+										<c:when
+											test="${loginEmail != board.mb_email && board.secret == 1}">
+											<img class="secret-img"
+												src="${pageContext.request.contextPath}/resources/images/secret.png">
 										</c:when>
 										<c:otherwise>
 
 										</c:otherwise>
-		       						</c:choose>
+									</c:choose>
 								</c:otherwise>
-       						</c:choose>
-    					</c:otherwise>
+							</c:choose>
+						</c:otherwise>
 					</c:choose>
+					
+					<c:if test="${not empty board.cm_content }">
+						<img class="reply-img" src="${pageContext.request.contextPath}/resources/images/reply.PNG" width="45px" height="17px">
+					</c:if>
+
 					</td>
 					<td class="bd_name">${board.mb_name}</td>
 					<td class="bd_regdate">${board.regdate}</td>
