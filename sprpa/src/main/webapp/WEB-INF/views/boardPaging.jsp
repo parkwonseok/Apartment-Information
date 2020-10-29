@@ -66,7 +66,7 @@
 		</div>
 		<!-- 옵션선택 끝 -->
 		<div>
-			<button id="btn_write">글쓰기</button>
+			<button id="btn_write" onclick="board_write('${loginEmail}')">글쓰기</button>
 		</div>
 
 		<div id="th">
@@ -185,6 +185,13 @@
 			var sel = document.getElementById('cntPerPage').value;
 			location.href = "boardList?nowPage=${paging.nowPage}&cntPerPage="
 					+ sel;
+		}
+		function board_write(email) {
+			if(email === "undefined" || email === null || email === ""){
+				$(location).attr('href', 'http://localhost:8080/sprpa/login');
+			} else {
+				$(location).attr('href', 'http://localhost:8080/sprpa/board/articleForm');
+			}
 		}
 	</script>
 </body>
