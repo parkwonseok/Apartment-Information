@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.pws.test.service.MemberService;
+import com.pws.test.vo.MemberVO;
 
 @Controller
 public class HomeController {
+	@Autowired
+    private MemberService memberService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		return "home";
@@ -37,7 +42,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/kakaologin", produces = "application/json", method = { RequestMethod.GET,
 			RequestMethod.POST })
-	public String kakaologin(@RequestParam("code") String code) {
+	public String kakaologin(@RequestParam("code") String code, HttpSession session) {
 		JsonNode accessToken;
 		// JsonNode트리형태로 토큰받아온다
 		JsonNode jsonToken = Kakao.getKakaoAccessToken(code);
@@ -58,6 +63,15 @@ public class HomeController {
 		System.out.println("id : " + id);
 		System.out.println("name : " + name);
 		System.out.println("email : " + email);
+		
+		MemberVO member = memberService.memberCheck(email);
+		MemberVO mb = new MemberVO();
+		mb.setMb_email(email);
+		mb.setMb_name(name);
+		if(member == null) {
+			memberService.insertSocialMember(mb);
+		}
+		session.setAttribute("loginEmail", email);
 		return "home";
 	}
 
@@ -78,8 +92,17 @@ public class HomeController {
 		JSONObject jsonObj = (JSONObject) obj;
 		Object obj2 = parser.parse(jsonObj.get("response").toString());
 		JSONObject jsonObj2 = (JSONObject) obj2;
-		System.out.println(jsonObj2.get("name"));
-		System.out.println(jsonObj2.get("email"));
+		String name = (String) jsonObj2.get("name");
+		String email = (String) jsonObj2.get("email");
+		
+		MemberVO member = memberService.memberCheck(email);
+		MemberVO mb = new MemberVO();
+		mb.setMb_email(email);
+		mb.setMb_name(name);
+		if(member == null) {
+			memberService.insertSocialMember(mb);
+		}
+		session.setAttribute("loginEmail", email);
 		return "home";
 	}
 
@@ -105,8 +128,21 @@ public class HomeController {
 		JsonNode userInfo = Google.getGoogleUserInfo(accessToken);
 		System.out.println(userInfo.toString());
 
-		
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(userInfo.toString());
+		JSONObject jsonObj = (JSONObject) obj;
 
+		String email = (String) jsonObj.get("email");
+		String name = (String) jsonObj.get("name");
+		
+		MemberVO member = memberService.memberCheck(email);
+		MemberVO mb = new MemberVO();
+		mb.setMb_email(email);
+		mb.setMb_name(name);
+		if(member == null) {
+			memberService.insertSocialMember(mb);
+		}
+		session.setAttribute("loginEmail", email);
 		return "home";
 	}
 

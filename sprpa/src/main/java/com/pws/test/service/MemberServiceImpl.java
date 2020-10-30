@@ -43,4 +43,16 @@ public class MemberServiceImpl implements MemberService {
 		String mb_name = memberDAO.getMemberName(mb_email);
 		return mb_name;
 	}
+
+	@Override
+	public MemberVO memberCheck(String email) {
+		MemberVO memberVO = memberDAO.memberCheck(email);
+		return memberVO;
+	}
+
+	@Override
+	public int insertSocialMember(MemberVO memberVO) {
+		int result = memberDAO.insertSocialMember(memberVO);
+	    return result;
+	}
 }

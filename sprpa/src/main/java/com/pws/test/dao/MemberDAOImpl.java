@@ -39,4 +39,16 @@ public class MemberDAOImpl implements MemberDAO {
 		String mb_name =  vo.getMb_name();
 		return mb_name;
 	}
+
+	@Override
+	public MemberVO memberCheck(String email) {
+		MemberVO memberVO = sqlSession.selectOne(namespace+"memberCheck", email);
+		return memberVO;
+	}
+
+	@Override
+	public int insertSocialMember(MemberVO memberVO) {
+		int result = sqlSession.insert(namespace+"insertSocialMember", memberVO);
+	    return result;
+	}
 }

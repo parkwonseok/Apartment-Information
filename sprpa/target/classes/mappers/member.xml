@@ -32,4 +32,14 @@
 		insert into member
 		values(#{mb_email}, #{mb_pw}, #{mb_name})
 	</insert>
+	
+	<insert id="insertSocialMember" parameterType="MemberVO">
+		insert into member(mb_email, mb_name) values(#{mb_email}, #{mb_name})
+	</insert>
+	
+	<select id="memberCheck" resultType="MemberVO">
+        <![CDATA[
+            select * from member where mb_email = #{mb_email}
+        ]]>
+	</select>
 </mapper>

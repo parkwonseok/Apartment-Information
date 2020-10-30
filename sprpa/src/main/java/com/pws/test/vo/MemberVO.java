@@ -4,7 +4,7 @@ public class MemberVO {
 	private String mb_email;
 	private String mb_pw;
 	private String mb_name;
-	
+	public MemberVO(){}
 	public String getMb_email() {
 		return mb_email;
 	}

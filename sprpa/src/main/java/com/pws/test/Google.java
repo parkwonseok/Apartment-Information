@@ -28,7 +28,7 @@ public class Google {
 		postParams.add(new BasicNameValuePair("client_id",
 				"646310476786-5ml7n2ofqb422dqkekkbpgvt809opomp.apps.googleusercontent.com"));
 		postParams.add(new BasicNameValuePair("client_secret", "cnUOkSbsgj3B9lUpoYn3Mfw1"));
-		postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8080/test/googlelogin")); // 리다이렉트
+		postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8080/sprpa/googlelogin")); // 리다이렉트
 																											// URI
 		postParams.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값
 
