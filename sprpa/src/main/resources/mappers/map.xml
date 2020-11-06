@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="map">
+	<resultMap id="mapResult" type="MapVO">
+		<result property="id" column="id" />
+		<result property="address" column="address" />
+		<result property="name" column="name" />
+		<result property="date" column="transaction_date" />
+		<result property="price" column="transaction_price" />
+		<result property="floor" column="floor" />
+		<result property="area" column="area" />
+		<result property="longitude" column="longitude" />
+		<result property="latitude" column="latitude" />
+	</resultMap>
+
+	<select id="selectMapData" resultMap="mapResult">
+	    <![CDATA[
+	    	SELECT * from map where address like #{address}
+	    ]]>	
+	</select>
+	
+	<select id="selectData" resultType="MapVO">
+	    <![CDATA[
+	    	select * from map where id = (SELECT min(id) from map where address like #{address} and longitude != 0.0)
+	    ]]>	
+	</select>
+</mapper>

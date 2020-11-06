@@ -1,8 +1,4 @@
 body {text-align: center;margin:0; padding:0;}
-#title {color:rgba(0,0,0,0.8); font-size: 40px; font-weight: bold; margin: 120px 0 50px 0; }
-input {width: 500px; height: 60px; color:rgba(0,0,0,0.8); font-size: 20px; padding-left: 10px;margin: 2px;}
-input[type="submit"] {width: 499px; height: 60px; background: rgba(0,0,0,0.9); border: none; color: white; font-size: 20px; font-weight: bold; margin-top: 20px;}
-input[type="submit"]:hover {cursor:pointer;}
 li {list-style: none;}
 a {text-decoration: none;}
 header {display: flex;align-items: center;justify-content: space-around;height: 70px;background: rgba(0,0,0,0.8);z-index: 0;border-bottom: 1px solid gray;}

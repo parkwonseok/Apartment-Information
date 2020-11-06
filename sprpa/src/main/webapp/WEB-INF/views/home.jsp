@@ -55,7 +55,7 @@
 	</header>
 	<div id="search-container">
 		<h1>원하는 지역의 부동산 거래가를 검색해보세요</h1>
-		<form action="#">
+		<form action="${pageContext.request.contextPath}/map/show" method="get">
 			<select name="sido" id="sido"></select><select name="gugun" id="gugun"></select><input type="submit" id="search-btn" value="검색">
 		</form>
 	</div>

@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.pws.test.vo.MemberVO" alias="MemberVO" />
 		<typeAlias type="com.pws.test.vo.BoardVO" alias="BoardVO" />
+		<typeAlias type="com.pws.test.vo.MapVO" alias="MapVO" />
 	</typeAliases>
 </configuration>
